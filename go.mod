@@ -1,4 +1,4 @@
-module scraper
+module github.com/sellerapp-com/scraper-net
 
 go 1.17
 

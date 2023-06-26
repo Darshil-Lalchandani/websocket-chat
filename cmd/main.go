@@ -6,6 +6,8 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	"github.com/sellerapp-com/scraper-net/internal/app/redirector"
+	"github.com/sellerapp-com/scraper-net/internal/app/socket"
 )
 
 func main() {
@@ -17,14 +19,9 @@ func main() {
 	log.Print("server starting at localhost:4444")
 
 	http.Handle("/", http.FileServer(http.Dir("./public")))
-	http.HandleFunc("/websocket", func(w http.ResponseWriter, r *http.Request) {
-		id := r.URL.Query().Get("id")
-		handleConnections(w, r, id)
-	})
-	http.HandleFunc("/forwardRequest", func(w http.ResponseWriter, r *http.Request) {
-		text := r.URL.Query().Get("text")
-		querySocket(w, r, text)
-	})
-	go handleMessages()
+	socket.MountSocketRoutes()
+	redirector.MountRedirectionRoutes()
+
+	go socket.HandleMessages()
 	http.ListenAndServe(":"+port, nil)
 }
