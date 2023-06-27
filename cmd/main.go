@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/sellerapp-com/scraper-net/internal/app/redirector"
 	"github.com/sellerapp-com/scraper-net/internal/app/socket"
 )
 
@@ -20,7 +19,6 @@ func main() {
 
 	http.Handle("/", http.FileServer(http.Dir("./public")))
 	socket.MountSocketRoutes()
-	redirector.MountRedirectionRoutes()
 
 	go socket.HandleMessages()
 	http.ListenAndServe(":"+port, nil)
