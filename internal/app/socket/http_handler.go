@@ -3,13 +3,12 @@ package socket
 import "net/http"
 
 func MountSocketRoutes() {
-	http.HandleFunc("/websocket", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/websocket/connect", func(w http.ResponseWriter, r *http.Request) {
 		id := r.URL.Query().Get("id")
-		geo := r.URL.Query().Get("geo")
-		handleConnections(w, r, id, geo)
+		handleConnections(w, r, id)
 	})
-	http.HandleFunc("/forwardRequest", func(w http.ResponseWriter, r *http.Request) {
-		text := r.URL.Query().Get("text")
-		querySocket(w, r, text)
+	http.HandleFunc("/websocket/send", func(w http.ResponseWriter, r *http.Request) {
+		text := r.URL.Query().Get("message")
+		sendMessage(w, r, text)
 	})
 }

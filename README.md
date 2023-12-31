@@ -1,3 +1,3 @@
-# scraper-net
+# Websocket Chat Application
 
-Documentation in progress...
+A simple messaging application to gain hands-on experience with WebSocket.

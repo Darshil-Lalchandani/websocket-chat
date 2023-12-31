@@ -1,4 +1,4 @@
-module github.com/sellerapp-com/scraper-net
+module example.com/websocket-chat
 
 go 1.17
 

@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"os"
 
+	"example.com/websocket-chat/internal/app/socket"
 	"github.com/joho/godotenv"
-	"github.com/sellerapp-com/scraper-net/internal/app/socket"
 )
 
 func main() {

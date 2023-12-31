@@ -1,21 +1,13 @@
 package socket
 
 import (
-	"time"
-
 	"github.com/gorilla/websocket"
 )
 
 type ChatMessage struct {
-	Message   string `json:"text"`
-	RequestId string `json:"request_id"`
+	Message string `json:"text"`
 }
 
 type Socket struct {
-	Conn       *websocket.Conn
-	UsedCount  int
-	Geo        string
-	IP         string
-	LastUsedAt time.Time
-	CreatedAt  time.Time
+	Conn *websocket.Conn
 }
