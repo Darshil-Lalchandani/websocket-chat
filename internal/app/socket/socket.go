@@ -52,13 +52,15 @@ func HandleMessages() {
 	}
 }
 
-func sendMessage(w http.ResponseWriter, r *http.Request, text string) {
-	for _, c := range clients {
-		msg := ChatMessage{
-			Message: text,
+func sendMessage(w http.ResponseWriter, r *http.Request, text string, sendToID string) {
+	for id, c := range clients {
+		if id == sendToID {
+			msg := ChatMessage{
+				Message: text,
+			}
+			c.Conn.WriteJSON(&msg)
+			break
 		}
-		c.Conn.WriteJSON(&msg)
-		break
 	}
 	res, _ := json.Marshal(text)
 	w.Write(res)

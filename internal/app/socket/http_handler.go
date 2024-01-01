@@ -9,6 +9,7 @@ func MountSocketRoutes() {
 	})
 	http.HandleFunc("/websocket/send", func(w http.ResponseWriter, r *http.Request) {
 		text := r.URL.Query().Get("message")
-		sendMessage(w, r, text)
+		toID := r.URL.Query().Get("id")
+		sendMessage(w, r, text, toID)
 	})
 }
